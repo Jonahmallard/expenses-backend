@@ -1,7 +1,8 @@
-class Api::V1::TransactionsController < ApplicationController
+class TransactionsController < ApplicationController
     before_action :set_account
 
     def index
+        @transactions = Transaction.all
         render json: @account.transactions
     end
 

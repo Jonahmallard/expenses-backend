@@ -1,6 +1,6 @@
-class Api::V1::AccountsController < ApplicationController
+class AccountsController < ApplicationController
     def index
-        @accounts = Accounts.all()
+        @accounts = Account.all()
         render json: @accounts
     end
 
