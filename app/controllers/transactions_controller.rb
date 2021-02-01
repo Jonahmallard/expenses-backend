@@ -22,8 +22,14 @@ class TransactionsController < ApplicationController
     end
 
     def destroy
-    #   @transaction = Transaction.find(params[:id])
-    #   @transaction.destroy
+        @transaction = Transaction.find(params["id"])
+        @account = Account.find(@transaction.account_id)
+        if @account.update_balance_on_delete(@transaction)
+            @transaction.destroy
+            render json: @account
+        else
+            render json: {error: 'Balance too low'}
+        end
     end
 
     private
